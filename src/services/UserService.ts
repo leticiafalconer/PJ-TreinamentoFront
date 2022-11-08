@@ -27,4 +27,9 @@ export default class UserService {
 
         return response.data;
     }
+
+    static async getUserById(id: string): Promise<User> {
+        const response = await api.get(`/users/${id}`);
+        return response.data;
+    }
 }

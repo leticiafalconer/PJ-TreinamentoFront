@@ -4,58 +4,57 @@ import * as S from './styles';
 import PiuComponent from 'components/PiuComponent';
 import GroupsComponent from 'components/GroupsComponent';
 import FriendsComponent from 'components/FriendsComponent';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
+import PiuService from 'services/PiuService';
+import Piu from 'interfaces/Piu';
 
 const HomeTemplate = () => {
-    interface InterfacePiu {
-        name: string;
-        profileImg: string;
-        text: string;
-        piuImg?: string;
 
-    }
+    // const [getUser, setUser] = useState<User>();
 
-    const [piusArray, setPiusArray] = useState<InterfacePiu[]>([
-        {
-            name: 'Letícia Falconer',
-            profileImg: '/assets/profile.svg',
-            text: 'Quarta tem testinho de circuitos 😩 fui muito mal na P1 e precisava recuperar, mas não vai rolar... quero férias logo aaaaa'
+    // useEffect(() => {
+    //     const getUser = async () => {
+    //         const user = await UserService.getUserById("08e5be8d-3225-4816-a36f-d39990a11eba");
+    //         setUser(user);
+    //     };
 
-        },
-        {
-            name: 'Letícia Falconer',
-            profileImg: '/assets/profile.svg',
-            text: 'Olha que bonita ficou a torrada que eu fiz! 😋😋😋',
-            piuImg: '/assets/piu1.png'
+    //     getUser();
 
-        }
-    ]);
+    // }, []);
 
-    function sendPiu() {
-        if (piusInput == "") return;
-        if (piusInput.length > 140) return;
-        setPiusArray([{
-            name: 'Letícia Falconer',
-            profileImg: '/assets/profile.svg',
-            text: piusInput,
-        },
-        ...piusArray
-        ])
-    }
+    const [piusArray, setPiusArray] = useState<Piu[]>([]);
 
-    const [piusInput, setPiusInput] = useState("")
+    const [piusInput, setPiusInput] = useState("");
+
+    const [piuPostado, setPiuPostado] = useState(false);
 
     const [maxCaractersBoolean, setMaxCaractersBoolean] = useState(false);
 
-    function caractersBoolean() {
-        if (piusInput.length > 140) {
+    useEffect(() => {
+        const asyncGetPius = async () => {
+            const response = await PiuService.getPius();
+            console.log(response);
+            setPiusArray(response.sort((a, b) => (new Date(b.created_at).getTime()>new Date(a.created_at).getTime()? 1 : -1)));
+            
+        };
+
+        asyncGetPius();
+
+    }, [piuPostado]);
+
+    async function sendPiu() {
+        if (piusInput == "") return;
+        if (piusInput.length > 140) return;
+        await PiuService.postPiu(piusInput);
+        setPiuPostado(!piuPostado);
+    }
+    
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setPiusInput(event.target.value);
+        if (event.target.value.length > 140) {
             setMaxCaractersBoolean(true);
         }
         else setMaxCaractersBoolean(false);
-    }
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setPiusInput(event.target.value);
-        caractersBoolean();
     };
 
     return (
@@ -131,18 +130,26 @@ const HomeTemplate = () => {
                             </S.Divider>
                             <S.NewPiuSendContainer>
                                 <S.CountText colored={maxCaractersBoolean}>{piusInput.length} caracteres</S.CountText>
-                                <S.MainButton onClick={sendPiu} >Piar</S.MainButton>
+                                <S.MainButton onClick={() => sendPiu()} >Piar</S.MainButton>
                             </S.NewPiuSendContainer>
+
                         </S.NewPiuContainer>
-                        {
-                            piusArray.map((piu) => (
-                                <PiuComponent
-                                    name={piu.name}
-                                    profileImg={piu.profileImg}
-                                    text={piu.text}
-                                    piuImg={piu.piuImg}
-                                ></PiuComponent>))
-                        }
+                        <S.PiusWrapper>
+                            {
+                                piusArray.map((piu) => (
+                                    <PiuComponent key={piu.id}
+                                        id={piu.id}
+                                        name={piu.user.username}
+                                        profileImg={piu.user.avatar}
+                                        likes={piu.likes}
+                                        text={piu.text}
+                                        setPiuPostado={setPiuPostado}
+                                        piuPostado={piuPostado}
+                                        created_at={piu.created_at}
+                                        user={piu.user}
+                                    ></PiuComponent>))
+                            }
+                        </S.PiusWrapper>
                     </S.FeedContainer>
                     <S.RightSideBarContainer>
                         <S.ProfileContainer>
@@ -157,9 +164,9 @@ const HomeTemplate = () => {
                                 <S.SecondaryButton>Futebol</S.SecondaryButton>
                                 <S.SecondaryButton>Filmes</S.SecondaryButton>
                                 <S.SecondaryButton>Arte</S.SecondaryButton>
-                                <S.SecondaryButton>Animais</S.SecondaryButton>
-                                <S.SecondaryButton>Séries de Comédia</S.SecondaryButton>
+                                <S.SecondaryButton>Pets</S.SecondaryButton>
                                 <S.SecondaryButton>Copa do Mundo</S.SecondaryButton>
+                                <S.SecondaryButton>Séries de Comédia</S.SecondaryButton>
                             </S.InterestButtonsContainer>
                         </S.InterestsContainer>
                     </S.RightSideBarContainer>

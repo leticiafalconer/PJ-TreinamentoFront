@@ -39,7 +39,7 @@ export const SearchContainer = styled.div`
 `;
 
 export const SearchInput = styled.input`
-    width: 16vw;
+    width: 160px;
     font-size: 14px;
     font-style: italic;
     font-weight: 400;
@@ -50,6 +50,10 @@ export const SearchInput = styled.input`
     border-style: solid;
     padding: 8px;
     padding-left: 16px;
+
+    @media only screen and (min-width: 1000px) {
+        width: 16vw;
+    }
 `;
 
 export const SearchButton = styled.button`
@@ -75,57 +79,107 @@ export const Body = styled.div`
 `;
 export const LeftSideBarContainer = styled.div`
     height: 88vh;
-    width: 32vw;
+    width: 40vw;
     background-color: #FAFAFA;
     display: flex;
     flex-direction: column;
     padding-top: 32px;
-    padding-left: 32px;
+    padding-left: 8px;
     gap: 72px;
     border-radius: 16px;
     box-shadow: 1px 1px 4px #BEBEBE;
     margin-left: 16px;
     margin-right: 8px;
     margin-top: 8px;
-    /* position: fixed; */
+
+    @media only screen and (min-width: 850px) {
+        padding-left: 16px;
+    }
+
+    @media only screen and (min-width: 960px) {
+        width: 32vw;
+    }
+
+    @media only screen and (min-width: 1100px) {
+        padding-left: 16px;
+    }
+
+    @media only screen and (min-width: 1150px) {
+        padding-left: 32px;
+        width: 360px;
+    }
+
+    @media only screen and (min-width: 1400px) {
+        width: 480px;
+        padding-left: 48px;
+    }
+    
 `;
 
 export const GroupsContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    @media only screen and (min-width: 1150px) {
+        gap: 20px;
+    }
 `
 
 export const FriendsContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    @media only screen and (min-width: 1150px) {
+        gap: 20px;
+    }
 `;
 
 export const Titles = styled.span`
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: #322C1E;
+    height: fit-content;
+
+    @media only screen and (min-width: 900px) {
+        font-size: 20px;
+    }
+
+    @media only screen and (min-width: 1150px) {
+        font-size: 24px;
+    }
 `;
 
 export const FeedContainer = styled.div`
-    min-height: 100%;
-    height: fit-content;
+    height: 100%;
     width: 100%;
     background-color: #FAFAFA;
     display: flex;
     flex-direction: column;
     padding-top: 24px;
     padding-bottom: 24px;
-    padding-left: 32px;
-    padding-right: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
     gap: 16px;
     border-radius: 16px;
     box-shadow: 1px 1px 4px #BEBEBE;
     margin-left: 8px;
     margin-right: 8px;
     margin-top: 8px;
-    overflow-y: hidden;
+    overflow-y: scroll;
+
+    @media only screen and (min-width: 950px) {
+        padding-top: 24px;
+        padding-bottom: 24px;
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    @media only screen and (min-width: 1300px) {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
 `;
 
 export const NewPiuContainer = styled.div`
@@ -185,13 +239,9 @@ export const Divider = styled.hr`
 
 export const CountText = styled.span<ContainerProps>`
     font-size: 14px;
-    color: ${({colored}) => (colored ? "red" : "#545454")};
+    color: ${({ colored }) => (colored ? "red" : "#545454")};
 `;
 
-export const CountTextRed = styled.span`
-    font-size: 14px;
-    color: #FF0000;
-`;
 
 export const MainButton = styled.button`
     width: fit-content;
@@ -206,6 +256,11 @@ export const MainButton = styled.button`
     border-color: #FFFFFF;
     border-style: none;
     border-radius: 8px;
+    font-size: 12px;
+
+    @media only screen and (min-width: 1150px) {
+        font-size: 16px;
+    }
 `;
 
 export const RightSideBarContainer = styled.div`
@@ -223,6 +278,14 @@ export const RightSideBarContainer = styled.div`
     margin-left: 8px;
     margin-right: 16px;
     margin-top: 8px;
+
+    @media only screen and (min-width: 1150px) {
+        width: 480px;
+    }
+
+    @media only screen and (min-width: 1400px) {
+        width: 540px;
+    }
 `;
 
 export const ProfileContainer = styled.div`
@@ -244,6 +307,10 @@ export const ProfileDescription = styled.p`
     font-size: 14px;
     color: #545454;
     text-align: center;
+
+    @media only screen and (min-width: 1150px) {
+        font-size: 16px;
+    }
 `;
 
 export const InterestsContainer = styled.div`
@@ -259,12 +326,14 @@ export const InterestButtonsContainer = styled.div`
     gap: 4px;
     display: flex;
     flex-wrap: wrap;
+    
 `
 
 export const InterestsTitle = styled.span`
     font-weight: bold;
     font-size: 14px;
     color: #322C1E;
+    
 `;
 
 
@@ -273,8 +342,8 @@ export const SecondaryButton = styled.button`
     width: fit-content;
     height: fit-content;
     padding: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
     align-items: center;
     color: #EDBD5F;
     background-color: #FFFFFF;
@@ -282,7 +351,25 @@ export const SecondaryButton = styled.button`
     border-style: solid;
     border-width: 1px;
     border-radius: 8px;
+
+    @media only screen and (min-width: 1000px) {
+        padding: 8px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    @media only screen and (min-width: 1150px) {
+        font-size: 16px;
+    }
+
 `;
+
+export const PiusWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+`
 
 
 

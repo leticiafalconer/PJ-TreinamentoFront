@@ -14,6 +14,10 @@ export const Title = styled.span`
     font-weight: bold;
     font-size: 14px;
     color: #FFFFFF;
+
+    @media only screen and (min-width: 1150px) {
+        font-size: 16px;
+    }
 `;
 
 export const Icon = styled.img`

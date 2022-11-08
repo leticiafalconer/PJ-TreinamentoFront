@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
-interface ContainerProps {
-    displayed: boolean;
-}
-
-export const Container = styled.div<ContainerProps>`
-    display: ${({displayed}) => (displayed ? "none" : "flex")};
+export const Container = styled.div`
+    display: flex;
     flex-direction: column;
     width: 100%;
     height: fit-content;
@@ -27,15 +23,28 @@ export const ProfileContainer = styled.div`
     gap: 8px;
 `;
 
-export const Name = styled.span`
+export const NameWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+`;
+
+export const Username = styled.span`
     font-weight: bold;
     font-size: 14px;
     color: #322C1E;
 `;
 
+export const Name = styled.span`
+    font-weight: lighter;
+    font-size: 10px;
+    color: #949494;
+`;
+
 export const ProfilePicture = styled.img`
     width: 32px;
     height: 32px;
+    border-radius: 50%;
 `;
 
 export const DeleteContainer = styled.div`
@@ -46,6 +55,7 @@ export const DeleteContainer = styled.div`
 export const Delete = styled.img`
     width: 24px;
     height: 24px;
+    cursor: pointer;
 `;
 
 export const PiuText = styled.p`
@@ -71,15 +81,38 @@ export const PiuImage= styled.img`
     border-radius: 8px;
 `;
 
-export const PiuLikeContainer= styled.div`
-    width: 100%;
-    height: fit-content;
+export const PiuLikeWrapper= styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
+    padding-left: 8px;
+`;
+
+export const PiuBottomWrapper= styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 8px;
 `;
 
 export const PiuLike= styled.img`
     width: auto;
-    height: 24px;
+    height: 20px;
+    cursor: pointer;
+`;
+
+export const PiuLikeCount= styled.span`
+    width: auto;
+    font-size: 16px;
+    padding-top: 4px;
+    color: #949494;
+    font-weight: lighter;
+`;
+
+export const CreationDate = styled.p`
+    width: auto;
+    font-size: 14px;
+    color: #949494;
+    font-weight: lighter;
+    padding-top: 4px;
 `;
