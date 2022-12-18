@@ -5,7 +5,7 @@ export const Container = styled.div`
     align-items: center;
     padding: 8px;
     border-radius: 8px;
-    background-color: #EDBD5F;
+    background-color: #edbd5f;
     gap: 8px;
     width: fit-content;
 `;
@@ -13,7 +13,7 @@ export const Container = styled.div`
 export const Title = styled.span`
     font-weight: bold;
     font-size: 14px;
-    color: #FFFFFF;
+    color: #ffffff;
 
     @media only screen and (min-width: 1150px) {
         font-size: 16px;

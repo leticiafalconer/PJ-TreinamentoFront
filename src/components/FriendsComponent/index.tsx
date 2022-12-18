@@ -6,7 +6,7 @@ export type FriendsComponentProps = {
     // online: boolean;
 };
 
-const FriendsComponent: React.FC<FriendsComponentProps> = ({ name, img, }) => (
+const FriendsComponent: React.FC<FriendsComponentProps> = ({ name, img }) => (
     <S.Container>
         <S.Icon src={img} />
         <S.Name>{name}</S.Name>

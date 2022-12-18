@@ -10,9 +10,9 @@ export const Container = styled.div`
     padding-top: 16px;
     padding-bottom: 16px;
     gap: 16px;
-    background-color: #F4F2EE;
+    background-color: #f4f2ee;
     border-radius: 16px;
-    box-shadow: 1px 1px 4px #BEBEBE;
+    box-shadow: 1px 1px 4px #bebebe;
 `;
 
 export const ProfileContainer = styled.div`
@@ -32,7 +32,7 @@ export const NameWrapper = styled.div`
 export const Username = styled.span`
     font-weight: bold;
     font-size: 14px;
-    color: #322C1E;
+    color: #322c1e;
 `;
 
 export const Name = styled.span`
@@ -64,10 +64,9 @@ export const PiuText = styled.p`
     color: #545454;
     padding-left: 8px;
     padding-right: 8px;
-    
 `;
 
-export const PiuImageContainer= styled.div`
+export const PiuImageContainer = styled.div`
     width: 100%;
     height: fit-content;
     display: flex;
@@ -75,33 +74,33 @@ export const PiuImageContainer= styled.div`
     align-items: center;
 `;
 
-export const PiuImage= styled.img`
+export const PiuImage = styled.img`
     width: 85%;
     height: auto;
     border-radius: 8px;
 `;
 
-export const PiuLikeWrapper= styled.div`
+export const PiuLikeWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
     padding-left: 8px;
 `;
 
-export const PiuBottomWrapper= styled.div`
+export const PiuBottomWrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding-left: 8px;
 `;
 
-export const PiuLike= styled.img`
+export const PiuLike = styled.img`
     width: auto;
     height: 20px;
     cursor: pointer;
 `;
 
-export const PiuLikeCount= styled.span`
+export const PiuLikeCount = styled.span`
     width: auto;
     font-size: 16px;
     padding-top: 4px;

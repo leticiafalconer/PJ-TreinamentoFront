@@ -1,4 +1,4 @@
 export default interface PiuLike {
-	userId: string;
-	piuId: string;
+    userId: string;
+    piuId: string;
 }

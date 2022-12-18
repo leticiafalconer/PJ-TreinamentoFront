@@ -7,7 +7,7 @@ export type GroupsComponentProps = {
 
 const GroupsComponent: React.FC<GroupsComponentProps> = ({ title, img }) => (
     <S.Container>
-        <S.Icon src={img}/>
+        <S.Icon src={img} />
         <S.Title>{title}</S.Title>
     </S.Container>
 );
